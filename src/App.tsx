@@ -1,13 +1,32 @@
 import React, { FC } from 'react';
-import { Hello } from '@/components/Hello'
+import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
+import { Nav } from './components/auth/Nav';
+import PrivateRoute from './components/auth/PrivateRoute';
+
+import { Home } from './pages/home';
+import { Login } from './pages/login';
 
 const App: FC = () => {
+
   return (
-    <div>
-      <h1 className='bg-yellow-500 text-green-500'>Hello React</h1>
-      <Hello name='Maratib' />
+    <div className='app-container'>
+      <Nav />
+      <div className="container">
+        <Routes>
+          <Route path='/' element={
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
+          } />
+          <Route path="/login" element={<Login />} />
+          <Route path="*" element={<Navigate to="/" />} />
+
+        </Routes>
+      </div>
     </div>
   );
 };
+
+
 
 export default App
