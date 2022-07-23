@@ -1,23 +1,16 @@
-import { useUserAuth } from "@/context/userAuthContext";
 import React from "react";
-import { Navigate, Outlet, Route } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
+import { useAuth } from "@/context/AuthContext";
 
 const PrivateRoute = (props: any) => {
-    // const isAuth  = false
-    const [user, logIn] = useUserAuth();
+  const { loggedIn, logIn } = useAuth();
 
-    console.log(user);
+  //   const token = localStorage.getItem("auth");
 
+  //   console.log("token", token);
+  console.log("Logged in: ", loggedIn);
 
-    logIn('abc', 'def');
-
-
-
-    const token = localStorage.getItem("auth");
-
-    console.log("token", token);
-
-    return <>{token ? <Outlet {...props} /> : <Navigate to="/login" />}</>;
+  return <>{loggedIn ? <Outlet {...props} /> : <Navigate to="/login" />}</>;
 };
 
 export default PrivateRoute;

@@ -1,9 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{html,js,jsx,ts,tsx}"],
+  darkMode: "class",
   theme: {
     debugScreens: {
-      position: ["bottom", "right"],
+      // position: ["bottom", "right"],
     },
     container: {
       padding: {
